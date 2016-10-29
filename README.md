@@ -1,6 +1,12 @@
 golden
 ======
 
+[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
+[![GitHub release](https://img.shields.io/github/release/nochso/golden.svg)](https://github.com/nochso/golden/releases)
+[![Go Report Card](https://goreportcard.com/badge/github.com/nochso/golden)](https://goreportcard.com/report/github.com/nochso/golden)
+[![Build Status](https://travis-ci.org/nochso/golden.svg?branch=master)](https://travis-ci.org/nochso/golden)
+[![Coverage Status](https://coveralls.io/repos/github/nochso/golden/badge.svg?branch=master)](https://coveralls.io/github/nochso/golden?branch=master)
+
 Package golden helps writing golden tests.
 
 A golden test (a.k.a. gold master or approval test) consists of pairs of
