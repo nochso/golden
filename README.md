@@ -30,6 +30,14 @@ See [godoc](https://godoc.org/github.com/nochso/golden) for API docs and
 examples.
 
 
+Changes / Versioning
+--------------------
+
+All notable changes to this project will be documented in [CHANGELOG.md](CHANGELOG.md)
+
+This project adheres to [Semantic Versioning](http://semver.org/).
+
+
 License
 -------
 
