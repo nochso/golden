@@ -70,7 +70,11 @@ func (f File) Update(b []byte) {
 	if f.Case.T != nil {
 		f.Case.T.Logf("updating golden file: %s", f.Path)
 	}
-	f.Case.T.Log(diff(f.Case.T, f.Bytes(), b))
+	before := []byte{}
+	if f.Exists() {
+		before = f.Bytes()
+	}
+	f.Case.T.Log(diff(f.Case.T, before, b))
 	must(f.Case.T, ioutil.WriteFile(f.Path, b, 0644))
 }
 
@@ -98,6 +102,11 @@ func (f File) Bytes() []byte {
 // It will fail when the file could not be read.
 func (f File) String() string {
 	return string(f.Bytes())
+}
+
+func (f File) Exists() bool {
+	_, err := os.Stat(f.Path)
+	return err == nil
 }
 
 // Case provides input and expected output for a single test case.
