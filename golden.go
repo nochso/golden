@@ -178,5 +178,5 @@ func must(t *testing.T, err error) {
 	if t == nil {
 		panic(err)
 	}
-	t.Fatal(err)
+	t.Error(err)
 }
