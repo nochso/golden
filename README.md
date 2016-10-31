@@ -1,7 +1,7 @@
 golden
 ======
 
-[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
+[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![GitHub release](https://img.shields.io/github/release/nochso/golden.svg)](https://github.com/nochso/golden/releases)
 [![GoDoc](https://godoc.org/github.com/nochso/golden?status.svg)](http://godoc.org/github.com/nochso/golden)  
 [![Go Report Card](https://goreportcard.com/badge/github.com/nochso/golden)](https://goreportcard.com/report/github.com/nochso/golden)
