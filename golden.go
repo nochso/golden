@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -170,13 +171,13 @@ func diff(t *testing.T, exp, act []byte) string {
 	)
 }
 
-// must fail a non-nil T or panic when err is set
+// must call t.Error or log.Println
 func must(t *testing.T, err error) {
 	if err == nil {
 		return
 	}
 	if t == nil {
-		panic(err)
+		log.Println(err)
 	}
 	t.Error(err)
 }
