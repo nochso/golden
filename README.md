@@ -30,6 +30,17 @@ Documentation
 See [godoc](https://godoc.org/github.com/nochso/golden) for API docs and
 examples.
 
+Notes
+-----
+It's important that golden files are easy to read, edit and diff. Usually it's
+enough to add a `String() string` method or more detailed `TestString`,
+`debugString`, etc. to dump the data you want to compare in a human readable
+way.
+
+Any methods that could fail and have access to T (as in `testing.T`)
+will call `T.Error(err)`. If T is nil, `log.Println(err)` is called instead.
+This mainly concerns Case and File structs and any methods mentioning
+failing.
 
 Changes / Versioning
 --------------------
