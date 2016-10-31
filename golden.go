@@ -2,6 +2,7 @@ package golden
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -125,24 +126,15 @@ func NewCase(t *testing.T, path string) Case {
 	return c
 }
 
-// Test this case with a function fn that takes a Case for input and returns
-// []byte output.
-//
-// If update is false, the return value of fn is compared to the golden master.
-// If update is true, the golden file will be overwritten with the output of
-// the given function.
-func (c Case) Test(fn func(Case) []byte, update bool) {
+// Diff the given actual string with the expected content of c.Out.
+// Fails a test if contents are different.
+func (c Case) Diff(actual string) {
 	c.T.Run(c.In.Path, func(t *testing.T) {
-		// Let the current case work with the named sub test
 		c.T = t
-		actual := fn(c)
-		if update { // update without testing
-			c.Out.Update(actual)
-			return
-		}
-		expected := c.Out.Bytes()
-		if !bytes.Equal(actual, expected) {
-			c.T.Error(diff(c.T, expected, actual))
+		exp := c.Out.Bytes()
+		act := []byte(actual)
+		if !bytes.Equal(exp, act) {
+			must(c.T, errors.New(diff(c.T, exp, act)))
 		}
 	})
 }

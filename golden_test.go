@@ -34,11 +34,10 @@ func TestFile_Update(t *testing.T) {
 	os.Remove(path)
 }
 
-func TestCase_Test(t *testing.T) {
+func TestCase_Diff(t *testing.T) {
 	c := NewCase(t, "test-fixtures/in.txt")
-	c.Test(func(c Case) []byte {
-		return bytes.Repeat(c.In.Bytes(), 2)
-	}, false)
+	act := bytes.Repeat(c.In.Bytes(), 2)
+	c.Diff(string(act))
 }
 
 func TestDirSlice(t *testing.T) {
