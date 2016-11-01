@@ -22,6 +22,8 @@ Security   invites users to upgrade in case of vulnerabilities.
 - Test status and coverage thanks to [travis-ci.org](https://travis-ci.org/nochso/golden)
   and [coveralls.io](https://coveralls.io/github/nochso/golden).
 - `Case.Diff(string)` to compare with `Case.Out.String()` and print diff on failure.
+- `Case.Test(func (Case))` to run within the context of a sub test named after
+  the input path.
 
 ### Changed
 - In absense of `testing.T` an error will cause `log.Println` to be called instead of a panic.

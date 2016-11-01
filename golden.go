@@ -46,6 +46,14 @@ func Dir(t *testing.T, path string) <-chan Case {
 	return ch
 }
 
+// TestDir calls fn with each Case in path. Each Case i is bound to a sub test
+// named after the input file.
+func TestDir(t *testing.T, path string, fn func(Case)) {
+	for tc := range Dir(t, path) {
+		tc.Test(fn)
+	}
+}
+
 // DirSlice returns a Case slice from a given directory.
 //
 // Any errors while walking the file system will fail and are not ignored.
@@ -129,13 +137,19 @@ func NewCase(t *testing.T, path string) Case {
 // Diff the given actual string with the expected content of c.Out.
 // Fails a test if contents are different.
 func (c Case) Diff(actual string) {
+	exp := c.Out.Bytes()
+	act := []byte(actual)
+	if !bytes.Equal(exp, act) {
+		must(c.T, errors.New(diff(c.T, exp, act)))
+	}
+}
+
+// Test runs fn in a sub test named after the input file.
+func (c Case) Test(fn func(Case)) {
 	c.T.Run(c.In.Path, func(t *testing.T) {
-		c.T = t
-		exp := c.Out.Bytes()
-		act := []byte(actual)
-		if !bytes.Equal(exp, act) {
-			must(c.T, errors.New(diff(c.T, exp, act)))
-		}
+		tc := c
+		tc.T = t
+		fn(tc)
 	})
 }
 
