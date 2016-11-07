@@ -30,7 +30,7 @@ Security   invites users to upgrade in case of vulnerabilities.
 - Colourful diff output.
 
 ### Changed
-- In absense of `testing.T` an error will cause `log.Println` to be called instead of a panic.
+- In absence of `testing.T` an error will cause `log.Println` to be called instead of a panic.
 - Errors now cause `t.Error` instead of `t.Fatal`.
 
 
