@@ -18,6 +18,10 @@ Security   invites users to upgrade in case of vulnerabilities.
 [Unreleased]
 ------------
 
+
+[0.2.0] - 2016-11-07
+--------------------
+
 ### Added
 - Test status and coverage thanks to [travis-ci.org](https://travis-ci.org/nochso/golden)
   and [coveralls.io](https://coveralls.io/github/nochso/golden).
@@ -38,3 +42,4 @@ Security   invites users to upgrade in case of vulnerabilities.
 
 
 [Unreleased]: https://github.com/nochso/golden/compare/0.1.0...HEAD
+[0.2.0]: https://github.com/nochso/golden/compare/0.1.0...0.2.0
