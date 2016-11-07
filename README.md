@@ -17,6 +17,12 @@ This package is mainly intended to be used with the standard Go testing
 library. You can still use it without. It is not intended to be a full
 testing framework.
 
+- [Installation](#installation)
+- [Documentation](#documentation)
+- [Notes](#notes)
+- [Changes / Versioning](#changes--versioning)
+- [License](#license)
+
 
 Installation
 ------------
