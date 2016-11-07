@@ -12,6 +12,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/fatih/color"
 	"github.com/pmezard/go-difflib/difflib"
 )
 
@@ -168,12 +169,24 @@ func diff(t *testing.T, exp, act []byte) string {
 		ToFile:   "Actual",
 	}
 	diff, err := difflib.GetUnifiedDiffString(ud)
+	lines := difflib.SplitLines(diff)
+	for i, line := range lines {
+		switch line[0] {
+		case '+':
+			line = color.GreenString("%s", line)
+		case '-':
+			line = color.RedString("%s", line)
+		case '@':
+			line = color.YellowString("%s", line)
+		}
+		lines[i] = line
+	}
 	must(t, err)
 	return fmt.Sprintf(
 		"Bytes/Lines: %+d/%+d\n%s",
 		len(act)-len(exp),
 		len(b)-len(a),
-		diff,
+		strings.Join(lines, ""),
 	)
 }
 
