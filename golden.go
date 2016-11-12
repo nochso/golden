@@ -9,6 +9,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"testing"
 
@@ -113,6 +114,13 @@ func (f File) Bytes() []byte {
 // It will fail when the file could not be read.
 func (f File) String() string {
 	return string(f.Bytes())
+}
+
+// Split the file into a string slice using separator sep.
+func (f File) Split(sep string) []string {
+	pat := fmt.Sprintf("\n{0,1}%s\n{0,1}", regexp.QuoteMeta(sep))
+	re := regexp.MustCompile(pat)
+	return re.Split(f.String(), -1)
 }
 
 func (f File) Exists() bool {
