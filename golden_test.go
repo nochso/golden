@@ -2,10 +2,15 @@ package golden
 
 import (
 	"bytes"
+	"flag"
 	"io/ioutil"
 	"os"
 	"testing"
+
+	"github.com/k0kubun/pp"
 )
+
+var update = flag.Bool("update", false, "update golden files")
 
 func TestFile(t *testing.T) {
 	c := NewCase(t, "test-fixtures/in.txt")
@@ -37,15 +42,28 @@ func TestFile_Update(t *testing.T) {
 func TestCase_Diff(t *testing.T) {
 	c := NewCase(t, "test-fixtures/in.txt")
 	act := bytes.Repeat(c.In.Bytes(), 2)
+	if *update {
+		c.Out.Update(act)
+	}
 	c.Diff(string(act))
 }
 
 func TestDirSlice(t *testing.T) {
 	cases := DirSlice(t, "test-fixtures")
-	expLen := 1
+	expLen := 2
 	if expLen != len(cases) {
 		t.Errorf("expected %d case; got %d", expLen, len(cases))
 	}
+}
+
+func TestFile_Split(t *testing.T) {
+	c := NewCase(t, "test-fixtures/split.txt")
+	s := c.In.Split("===")
+	pp.ColoringEnabled = false
+	if *update {
+		c.Out.Update([]byte(pp.Sprint(s)))
+	}
+	c.Diff(pp.Sprint(s))
 }
 
 func bEqual(t *testing.T, exp, act []byte) {
