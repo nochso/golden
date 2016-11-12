@@ -4,4 +4,7 @@
   "\nthis one has a leading one",
   "\nthis one has both\n",
   "\n\ntwo new lines each\n\n",
+  "this is less readable but works",
+  "this too\n",
+  "end",
 }
