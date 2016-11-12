@@ -36,6 +36,9 @@ func TestFile_Update(t *testing.T) {
 	b := []byte("foo")
 	c.In.Update(b)
 	bEqual(t, b, c.In.Bytes())
+
+	c.In.Update([]byte{})
+	bEqual(t, []byte{}, c.In.Bytes())
 	os.Remove(path)
 }
 
@@ -52,7 +55,7 @@ func TestDirSlice(t *testing.T) {
 	cases := DirSlice(t, "test-fixtures")
 	expLen := 2
 	if expLen != len(cases) {
-		t.Errorf("expected %d case; got %d", expLen, len(cases))
+		t.Errorf("expected %d cases; got %d", expLen, len(cases))
 	}
 }
 
@@ -64,6 +67,17 @@ func TestFile_Split(t *testing.T) {
 		c.Out.Update([]byte(pp.Sprint(s)))
 	}
 	c.Diff(pp.Sprint(s))
+}
+
+func TestTestDir(t *testing.T) {
+	count := 0
+	TestDir(t, "test-fixtures", func(tc Case) {
+		count++
+	})
+	expLen := 2
+	if count != expLen {
+		t.Errorf("expected %d cases; got %d", expLen, count)
+	}
 }
 
 func bEqual(t *testing.T, exp, act []byte) {
