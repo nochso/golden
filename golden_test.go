@@ -10,7 +10,10 @@ import (
 	"github.com/k0kubun/pp"
 )
 
-var update = flag.Bool("update", false, "update golden files")
+var (
+	update        = flag.Bool("update", false, "update golden files")
+	expectedCases = 2
+)
 
 func TestFile(t *testing.T) {
 	c := NewCase(t, "test-fixtures/in.txt")
@@ -53,9 +56,8 @@ func TestCase_Diff(t *testing.T) {
 
 func TestDirSlice(t *testing.T) {
 	cases := DirSlice(t, "test-fixtures")
-	expLen := 2
-	if expLen != len(cases) {
-		t.Errorf("expected %d cases; got %d", expLen, len(cases))
+	if expectedCases != len(cases) {
+		t.Errorf("expected %d cases; got %d", expectedCases, len(cases))
 	}
 }
 
@@ -74,9 +76,8 @@ func TestTestDir(t *testing.T) {
 	TestDir(t, "test-fixtures", func(tc Case) {
 		count++
 	})
-	expLen := 2
-	if count != expLen {
-		t.Errorf("expected %d cases; got %d", expLen, count)
+	if count != expectedCases {
+		t.Errorf("expected %d cases; got %d", expectedCases, count)
 	}
 }
 
