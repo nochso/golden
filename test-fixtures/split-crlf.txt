@@ -1,0 +1,20 @@
+this part will not have a new line
+===
+this one will have a trailing one
+
+===
+
+this one has a leading one
+===
+
+this one has both
+
+===
+
+
+two new lines each
+
+
+===this is less readable but works===this too
+
+===end

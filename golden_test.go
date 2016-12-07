@@ -12,7 +12,7 @@ import (
 
 var (
 	update        = flag.Bool("update", false, "update golden files")
-	expectedCases = 2
+	expectedCases = 3
 )
 
 func TestFile(t *testing.T) {
@@ -62,7 +62,11 @@ func TestDirSlice(t *testing.T) {
 }
 
 func TestFile_Split(t *testing.T) {
-	c := NewCase(t, "test-fixtures/split.txt")
+	testSplit(t, NewCase(t, "test-fixtures/split.txt"))
+	testSplit(t, NewCase(t, "test-fixtures/split-crlf.txt"))
+}
+
+func testSplit(t *testing.T, c Case) {
 	s := c.In.Split("===")
 	pp.ColoringEnabled = false
 	if *update {

@@ -1,0 +1,10 @@
+[]string{
+  "this part will not have a new line",
+  "this one will have a trailing one\r\n",
+  "\r\nthis one has a leading one",
+  "\r\nthis one has both\r\n",
+  "\r\n\r\ntwo new lines each\r\n\r\n",
+  "this is less readable but works",
+  "this too\r\n",
+  "end",
+}
