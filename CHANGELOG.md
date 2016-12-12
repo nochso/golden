@@ -18,6 +18,9 @@ Security   invites users to upgrade in case of vulnerabilities.
 [Unreleased]
 ------------
 
+[0.2.1] - 2016-12-12
+--------------------
+
 ### Added
 - `func (f File) Split(sep string) []string`
   - Split the file into a string slice using separator sep.
@@ -45,5 +48,6 @@ Security   invites users to upgrade in case of vulnerabilities.
 - Initial public release under the MIT license.
 
 
-[Unreleased]: https://github.com/nochso/golden/compare/0.2.0...HEAD
+[Unreleased]: https://github.com/nochso/golden/compare/0.1.0...HEAD
+[0.2.1]: https://github.com/nochso/golden/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/nochso/golden/compare/0.1.0...0.2.0
